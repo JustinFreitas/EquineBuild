@@ -2,9 +2,6 @@ local getEncumbranceMult_orig
 local bFGU
 
 function onInit()
-	local featureNamePath = "charsheet.*.traitlist.*.name"
-	DB.addHandler(featureNamePath, "onAdd", onTraitNameAddOrUpdate)
-	DB.addHandler(featureNamePath, "onUpdate", onTraitNameAddOrUpdate)
 	bFGU = checkFGU()
 
 	if bFGU then
@@ -28,13 +25,8 @@ end
 -- See: <number_linked name="encumbrancebase" source="encumbrance.encumbered">
 function getEncumbranceMultOverride(nodeChar)
 	local mult = getEncumbranceMult_orig(nodeChar)
-	local nStackCount = 0
 	if hasQualifyingEquineBuildTrait(nodeChar) then
-		nStackCount = nStackCount + 1
-	end
-
-	if nStackCount > 0 then
-		mult = mult * (2 * nStackCount)
+		mult = mult * 2
 	end
 
 	return mult
@@ -50,30 +42,4 @@ function hasQualifyingEquineBuildTrait(nodeChar)
 	end
 
 	return bEquineBuild
-end
-
-function onTraitNameAddOrUpdate(nodeFeatureName)
-	-- Node hierarchy to character sheet: charsheet.featurelist.feature.name
-	local nodeChar = nodeFeatureName.getParent().getParent().getParent()
-
-	if bFGU then
-		CharEncumbranceManager5E.updateEncumbranceLimit(nodeChar)
-	else
-		local windowCharsheet = Interface.findWindow("charsheet", nodeChar)
-		updateInventoryPaneEncumbranceBaseIfLoaded(windowCharsheet)
-	end
-end
-
-function updateInventoryPaneEncumbranceBaseIfLoaded(w)
-	if not (w and w.inventory
-			  and w.inventory.subwindow
-			  and w.inventory.subwindow.contents
-			  and w.inventory.subwindow.contents.subwindow
-			  and w.inventory.subwindow.contents.subwindow.encumbrancebase
-			  and w.inventory.subwindow.contents.subwindow.encumbrancebase.onTraitsUpdated) then
-		return
-	end
-
-	-- See: <number_linked name="encumbrancebase" source="encumbrance.encumbered">
-	w.inventory.subwindow.contents.subwindow.encumbrancebase.onTraitsUpdated()
 end

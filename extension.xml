@@ -4,7 +4,7 @@
 	<properties>
 		<name>Feature: Equine Build</name>
 		<version>1.0</version>
-		<loadorder>998</loadorder>
+		<loadorder>999</loadorder>
 		<author>Justin Freitas</author>
 		<description>Double encumbrance limits if character has the Equine Build trait.</description>
 		<ruleset>
