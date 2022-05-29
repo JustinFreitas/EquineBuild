@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<root version="3.3" release="8.1|CoreRPG:4.1">
+	<announcement text="Equine Build v1.0, 5/29/22\r2022 Justin Freitas, FGC/FGU 5E" font="emotefont" icon="equine_build_icon" />
+	<properties>
+		<name>Feature: Equine Build</name>
+		<version>1.0</version>
+		<loadorder>998</loadorder>
+		<author>Justin Freitas</author>
+		<description>Double encumbrance limits if character has the Equine Build trait.</description>
+		<ruleset>
+			<name>5E</name>
+		</ruleset>
+	</properties>
+
+	<base>
+		<script name="Equine_Build" file="scripts/equine_build.lua" />
+		<icon name="equine_build_icon" file="graphics/icons/equine_build_icon.png" />
+	</base>
+</root>
