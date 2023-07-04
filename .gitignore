@@ -1,0 +1,6 @@
+.vs/slnx.sqlite
+.vs/VSWorkspaceState.json
+.vscode/settings.json
+scripts/.luacheckrc
+build/out/EquineBuild.ext
+build/out/EquineBuild.zip

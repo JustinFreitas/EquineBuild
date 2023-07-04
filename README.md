@@ -2,7 +2,7 @@
 
 https://github.com/JustinFreitas/EquineBuild
 
-Equine Build v1.0, by Justin Freitas
+Equine Build v1.1, by Justin Freitas
 
 ReadMe and Usage Notes
 
@@ -10,3 +10,4 @@ The purpose of this Fantasy Grounds 5e extension is to apply an additional 2x mu
 
 Changelist:
 - v1.0 - Initial version, based off of the Aspect of the Beast: Bear extension.
+- v1.1 - Icon update. Load order bump.  Versioning.  Readme.
