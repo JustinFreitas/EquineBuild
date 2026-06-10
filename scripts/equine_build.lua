@@ -20,9 +20,14 @@ end
 -- This is entered on strength change or trait change (not feature)
 -- due to the way record_char_inventory.xml works.
 -- See: <number_linked name="encumbrancebase" source="encumbrance.encumbered">
-function getEncumbranceMultOverride(nodeChar)
-	local mult = getEncumbranceMult_orig(nodeChar)
-	if hasEquineBuildTrait(nodeChar) then
+-- Note: FGC's CharManager.getEncumbranceMult is passed a char DB node, while
+-- FGU's CharEncumbranceManager5E.getEncumbranceMult is passed an rActor. Pass
+-- the original argument straight through to the wrapped function, but resolve a
+-- real char node (works for either input) before checking traits.
+function getEncumbranceMultOverride(vActor)
+	local mult = getEncumbranceMult_orig(vActor)
+	local nodeChar = ActorManager.getCreatureNode(vActor)
+	if nodeChar and hasEquineBuildTrait(nodeChar) then
 		mult = mult * 2
 	end
 
